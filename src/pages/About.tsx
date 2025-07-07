@@ -1,9 +1,16 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, Target, Shield, Heart } from "lucide-react";
+import { Users, Target, Shield, Heart, MessageCircle } from "lucide-react";
 
 const About = () => {
+  const handleWhatsAppClick = () => {
+    // Replace with your actual WhatsApp number (include country code without + or spaces)
+    const phoneNumber = "256777777777"; // Uganda number format
+    const message = "Hello! I'm interested in learning more about Zillion Capital.";
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       {/* Navigation */}
@@ -161,6 +168,18 @@ const About = () => {
           <p>&copy; 2024 Zillion Capital. All rights reserved. Finance Made Local • A future worth a zillion</p>
         </div>
       </footer>
+
+      {/* WhatsApp Button */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <Button
+          onClick={handleWhatsAppClick}
+          className="bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+          size="lg"
+        >
+          <MessageCircle className="w-6 h-6" />
+          <span className="ml-2 hidden sm:inline">WhatsApp</span>
+        </Button>
+      </div>
     </div>
   );
 };
