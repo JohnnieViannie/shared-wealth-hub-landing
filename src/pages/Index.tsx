@@ -1,5 +1,5 @@
-
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -80,7 +80,8 @@ const Index = () => {
               <a href="#how-it-works" className="text-gray-600 hover:text-blue-600 transition-all duration-300 hover:scale-105 relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-blue-600 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">How it Works</a>
               <a href="#features" className="text-gray-600 hover:text-blue-600 transition-all duration-300 hover:scale-105 relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-blue-600 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Why Choose Us</a>
               <a href="#security" className="text-gray-600 hover:text-blue-600 transition-all duration-300 hover:scale-105 relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-blue-600 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Who Can Join</a>
-              <a href="#about" className="text-gray-600 hover:text-blue-600 transition-all duration-300 hover:scale-105 relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-blue-600 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">About</a>
+              <Link to="/about" className="text-gray-600 hover:text-blue-600 transition-all duration-300 hover:scale-105 relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-blue-600 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">About</Link>
+              <Link to="/contact" className="text-gray-600 hover:text-blue-600 transition-all duration-300 hover:scale-105 relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-blue-600 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Contact</Link>
               <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
                 Get Started
               </Button>
@@ -108,7 +109,8 @@ const Index = () => {
                 <a href="#how-it-works" className="block px-3 py-2 text-gray-600 hover:text-blue-600 transition-colors hover:bg-blue-50 rounded">How it Works</a>
                 <a href="#features" className="block px-3 py-2 text-gray-600 hover:text-blue-600 transition-colors hover:bg-blue-50 rounded">Why Choose Us</a>
                 <a href="#security" className="block px-3 py-2 text-gray-600 hover:text-blue-600 transition-colors hover:bg-blue-50 rounded">Who Can Join</a>
-                <a href="#about" className="block px-3 py-2 text-gray-600 hover:text-blue-600 transition-colors hover:bg-blue-50 rounded">About</a>
+                <Link to="/about" className="block px-3 py-2 text-gray-600 hover:text-blue-600 transition-colors hover:bg-blue-50 rounded">About</Link>
+                <Link to="/contact" className="block px-3 py-2 text-gray-600 hover:text-blue-600 transition-colors hover:bg-blue-50 rounded">Contact</Link>
                 <Button className="w-full mt-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:scale-[1.02] transition-transform">Get Started</Button>
               </div>
             </div>
@@ -549,10 +551,10 @@ const Index = () => {
             <div>
               <h4 className="font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors hover:translate-x-2 inline-block duration-300">About Us</a></li>
+                <li><Link to="/about" className="hover:text-white transition-colors hover:translate-x-2 inline-block duration-300">About Us</Link></li>
                 <li><a href="#" className="hover:text-white transition-colors hover:translate-x-2 inline-block duration-300">Careers</a></li>
                 <li><a href="#" className="hover:text-white transition-colors hover:translate-x-2 inline-block duration-300">Press</a></li>
-                <li><a href="#" className="hover:text-white transition-colors hover:translate-x-2 inline-block duration-300">Contact</a></li>
+                <li><Link to="/contact" className="hover:text-white transition-colors hover:translate-x-2 inline-block duration-300">Contact</Link></li>
               </ul>
             </div>
             
