@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -70,9 +71,11 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:scale-105 transition-transform cursor-pointer">
-                Zillion Capital
-              </h1>
+              <img 
+                src="/lovable-uploads/e971dbb6-833d-49f1-abcc-b0fccec5f0d6.png" 
+                alt="Zillion Capital Logo" 
+                className="h-8 w-auto hover:scale-105 transition-transform cursor-pointer"
+              />
             </div>
             
             {/* Desktop Navigation */}
@@ -542,9 +545,11 @@ const Index = () => {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8 animate-fade-in">
             <div>
-              <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                Zillion Capital
-              </h3>
+              <img 
+                src="/lovable-uploads/e971dbb6-833d-49f1-abcc-b0fccec5f0d6.png" 
+                alt="Zillion Capital Logo" 
+                className="h-8 w-auto mb-4 filter brightness-0 invert"
+              />
               <p className="text-gray-400">Finance Made Local. A future worth a zillion.</p>
             </div>
             

@@ -11,8 +11,12 @@ const About = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <a href="/" className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:scale-105 transition-transform">
-                Zillion Capital
+              <a href="/" className="hover:scale-105 transition-transform">
+                <img 
+                  src="/lovable-uploads/e971dbb6-833d-49f1-abcc-b0fccec5f0d6.png" 
+                  alt="Zillion Capital Logo" 
+                  className="h-8 w-auto"
+                />
               </a>
             </div>
             <div className="hidden md:flex items-center space-x-8">
