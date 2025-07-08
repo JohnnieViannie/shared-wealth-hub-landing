@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, Target, Shield, Heart, MessageCircle } from "lucide-react";
@@ -17,23 +18,23 @@ const About = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
+      <section className="pt-20 pb-8 sm:pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 animate-fade-in">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 animate-fade-in">
             About <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Zillion Capital</span>
           </h1>
-          <p className="text-xl text-gray-600 mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+          <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
             Finance Made Local. A future worth a zillion.
           </p>
         </div>
       </section>
 
       {/* Mission Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Our Mission</h2>
-            <p className="text-xl text-gray-600 leading-relaxed">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">Our Mission</h2>
+            <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
               Zillion Capital is dedicated to democratizing financial services by making savings, loans, and investments accessible to everyone through community-driven financial circles. We believe that by working together, we can create a future where financial prosperity is within reach for all.
             </p>
           </div>
@@ -41,22 +42,22 @@ const About = () => {
       </section>
 
       {/* Values Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-purple-50">
+      <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Values</h2>
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Values</h2>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             <Card className="text-center hover:shadow-xl transition-all duration-500 hover:scale-105">
               <CardHeader>
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-8 h-8 text-white" />
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                 </div>
-                <CardTitle className="text-xl">Community First</CardTitle>
+                <CardTitle className="text-lg sm:text-xl">Community First</CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-base">
+                <CardDescription className="text-sm sm:text-base">
                   We believe in the power of community and collective financial growth through trusted circles.
                 </CardDescription>
               </CardContent>
@@ -64,13 +65,13 @@ const About = () => {
 
             <Card className="text-center hover:shadow-xl transition-all duration-500 hover:scale-105">
               <CardHeader>
-                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Shield className="w-8 h-8 text-white" />
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                 </div>
-                <CardTitle className="text-xl">Security & Trust</CardTitle>
+                <CardTitle className="text-lg sm:text-xl">Security & Trust</CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-base">
+                <CardDescription className="text-sm sm:text-base">
                   Your financial security is our top priority. We use bank-level encryption and transparent practices.
                 </CardDescription>
               </CardContent>
@@ -78,13 +79,13 @@ const About = () => {
 
             <Card className="text-center hover:shadow-xl transition-all duration-500 hover:scale-105">
               <CardHeader>
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Target className="w-8 h-8 text-white" />
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Target className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                 </div>
-                <CardTitle className="text-xl">Innovation</CardTitle>
+                <CardTitle className="text-lg sm:text-xl">Innovation</CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-base">
+                <CardDescription className="text-sm sm:text-base">
                   We continuously innovate to provide the best digital financial solutions for our community.
                 </CardDescription>
               </CardContent>
@@ -92,13 +93,13 @@ const About = () => {
 
             <Card className="text-center hover:shadow-xl transition-all duration-500 hover:scale-105">
               <CardHeader>
-                <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Heart className="w-8 h-8 text-white" />
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Heart className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                 </div>
-                <CardTitle className="text-xl">Empowerment</CardTitle>
+                <CardTitle className="text-lg sm:text-xl">Empowerment</CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-base">
+                <CardDescription className="text-sm sm:text-base">
                   We empower individuals to take control of their financial future through accessible tools and education.
                 </CardDescription>
               </CardContent>
@@ -108,11 +109,11 @@ const About = () => {
       </section>
 
       {/* Story Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Our Story</h2>
-            <div className="text-left space-y-6 text-lg text-gray-600">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">Our Story</h2>
+            <div className="text-left space-y-4 sm:space-y-6 text-base sm:text-lg text-gray-600">
               <p>
                 Zillion Capital was born from a simple observation: traditional banking systems often fail to serve the everyday financial needs of ordinary people. High fees, complex processes, and limited access to credit create barriers that prevent people from achieving financial stability.
               </p>
@@ -128,10 +129,10 @@ const About = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+      <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Join Our Community?</h2>
-          <p className="text-xl mb-8 opacity-90">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Ready to Join Our Community?</h2>
+          <p className="text-lg sm:text-xl mb-6 sm:mb-8 opacity-90">
             Start your journey towards financial freedom today.
           </p>
           <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 hover:scale-105 transition-all duration-300">
@@ -141,20 +142,20 @@ const About = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-4 sm:px-6 lg:px-8 bg-gray-900 text-white">
+      <footer className="py-6 sm:py-8 px-4 sm:px-6 lg:px-8 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto text-center">
-          <p>&copy; 2024 Zillion Capital. All rights reserved. Finance Made Local • A future worth a zillion</p>
+          <p className="text-sm sm:text-base">&copy; 2024 Zillion Capital. All rights reserved. Finance Made Local • A future worth a zillion</p>
         </div>
       </footer>
 
       {/* WhatsApp Button */}
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
         <Button
           onClick={handleWhatsAppClick}
-          className="bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+          className="bg-green-500 hover:bg-green-600 text-white rounded-full p-3 sm:p-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
           size="lg"
         >
-          <MessageCircle className="w-6 h-6" />
+          <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />
           <span className="ml-2 hidden sm:inline">WhatsApp</span>
         </Button>
       </div>

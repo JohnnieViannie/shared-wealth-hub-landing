@@ -39,23 +39,23 @@ const Contact = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
+      <section className="pt-20 pb-8 sm:pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 animate-fade-in">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 animate-fade-in">
             Contact <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Zillion Capital</span>
           </h1>
-          <p className="text-xl text-gray-600 mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+          <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
             We'd love to hear from you! Get in touch with us using the form below.
           </p>
         </div>
       </section>
 
       {/* Contact Form */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-4xl mx-auto">
           <Card className="shadow-lg animate-fade-in">
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl font-semibold">Send us a message</CardTitle>
+              <CardTitle className="text-xl sm:text-2xl font-semibold">Send us a message</CardTitle>
               <CardDescription>We'll get back to you as soon as possible.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -69,6 +69,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
+                      className="text-base"
                     />
                   </div>
                   <div>
@@ -79,6 +80,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
+                      className="text-base"
                     />
                   </div>
                   <div>
@@ -88,6 +90,7 @@ const Contact = () => {
                       placeholder="Your Phone Number"
                       value={formData.phone}
                       onChange={handleChange}
+                      className="text-base"
                     />
                   </div>
                   <div>
@@ -98,9 +101,10 @@ const Contact = () => {
                       onChange={handleChange}
                       rows={4}
                       required
+                      className="text-base"
                     />
                   </div>
-                  <Button type="submit" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                  <Button type="submit" className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
                     Send Message
                   </Button>
                 </div>
@@ -111,31 +115,31 @@ const Contact = () => {
       </section>
 
       {/* Contact Info */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-purple-50">
-        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 animate-fade-in">
+      <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div className="max-w-4xl mx-auto grid sm:grid-cols-2 gap-6 sm:gap-8 animate-fade-in">
           <Card className="shadow-lg">
             <CardHeader>
-              <CardTitle className="text-xl font-semibold flex items-center space-x-2">
+              <CardTitle className="text-lg sm:text-xl font-semibold flex items-center space-x-2">
                 <Phone className="w-5 h-5 text-gray-500" />
                 <span>Phone</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription>
-                <a href="tel:+256777777777" className="hover:text-blue-600 transition-colors">+256 777 777777</a>
+                <a href="tel:+256777777777" className="hover:text-blue-600 transition-colors text-base">+256 777 777777</a>
               </CardDescription>
             </CardContent>
           </Card>
 
           <Card className="shadow-lg">
             <CardHeader>
-              <CardTitle className="text-xl font-semibold flex items-center space-x-2">
+              <CardTitle className="text-lg sm:text-xl font-semibold flex items-center space-x-2">
                 <Mail className="w-5 h-5 text-gray-500" />
                 <span>Email Addresses</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <CardDescription className="space-y-2">
+              <CardDescription className="space-y-2 text-sm sm:text-base">
                 <div>
                   <strong>General Inquiries:</strong><br />
                   <a href="mailto:info@zillioncapital.com" className="hover:text-blue-600 transition-colors">info@zillioncapital.com</a>
@@ -154,13 +158,13 @@ const Contact = () => {
 
           <Card className="shadow-lg">
             <CardHeader>
-              <CardTitle className="text-xl font-semibold flex items-center space-x-2">
+              <CardTitle className="text-lg sm:text-xl font-semibold flex items-center space-x-2">
                 <MapPin className="w-5 h-5 text-gray-500" />
                 <span>Address</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <CardDescription>
+              <CardDescription className="text-base">
                 Kampala, Uganda
               </CardDescription>
             </CardContent>
@@ -168,13 +172,13 @@ const Contact = () => {
 
           <Card className="shadow-lg">
             <CardHeader>
-              <CardTitle className="text-xl font-semibold flex items-center space-x-2">
+              <CardTitle className="text-lg sm:text-xl font-semibold flex items-center space-x-2">
                 <Clock className="w-5 h-5 text-gray-500" />
                 <span>Business Hours</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <CardDescription>
+              <CardDescription className="text-base">
                 Mon - Fri: 9am - 5pm
               </CardDescription>
             </CardContent>
@@ -183,9 +187,9 @@ const Contact = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-4 sm:px-6 lg:px-8 bg-gray-900 text-white">
+      <footer className="py-6 sm:py-8 px-4 sm:px-6 lg:px-8 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto text-center">
-          <p>&copy; 2024 Zillion Capital. All rights reserved. Finance Made Local • A future worth a zillion</p>
+          <p className="text-sm sm:text-base">&copy; 2024 Zillion Capital. All rights reserved. Finance Made Local • A future worth a zillion</p>
         </div>
       </footer>
     </div>

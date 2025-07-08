@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -55,25 +54,25 @@ const Investments = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <section className="pt-20 pb-8 sm:pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left side - Content */}
-            <div className="text-center lg:text-left animate-fade-in">
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <div className="text-center lg:text-left animate-fade-in order-2 lg:order-1">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
                 Joint <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Investments</span>
               </h1>
               
-              <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-6">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-700 mb-4 sm:mb-6">
                 We Grow Together. We Prosper Together.
               </h2>
               
-              <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0">
+              <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 max-w-2xl mx-auto lg:mx-0">
                 Pool resources with fellow members to invest in startups, real estate, and other opportunities. 
                 Share risks, multiply returns, and build wealth <span className="font-bold text-green-600">collectively</span>.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
+              <div className="flex flex-col sm:flex-row gap-4 mb-6 sm:mb-8">
                 <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 hover:scale-105 transition-all duration-300">
                   Start Investing Together
                 </Button>
@@ -86,26 +85,26 @@ const Investments = () => {
             </div>
 
             {/* Right side - Investment Chart Animation */}
-            <div className="relative animate-fade-in" style={{ animationDelay: '0.5s' }}>
+            <div className="relative animate-fade-in order-1 lg:order-2" style={{ animationDelay: '0.5s' }}>
               {/* Main investment dashboard */}
-              <div className="relative mx-auto w-96 h-[500px] bg-white rounded-3xl shadow-2xl p-6 hover:scale-105 transition-transform duration-500">
+              <div className="relative mx-auto w-full max-w-sm lg:max-w-md xl:max-w-lg bg-white rounded-3xl shadow-2xl p-4 sm:p-6 hover:scale-105 transition-transform duration-500">
                 {/* Header */}
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Portfolio Growth</h3>
-                  <p className="text-gray-600">Investment Performance</p>
+                <div className="text-center mb-4 sm:mb-6">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Portfolio Growth</h3>
+                  <p className="text-gray-600 text-sm sm:text-base">Investment Performance</p>
                 </div>
 
                 {/* Portfolio Overview */}
-                <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl p-4 text-white mb-6">
+                <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl p-3 sm:p-4 text-white mb-4 sm:mb-6">
                   <div className="flex justify-between items-center mb-2">
                     <div>
-                      <p className="text-green-100 text-sm">Total Value</p>
-                      <p className="text-2xl font-bold">UGX {portfolioValue.toLocaleString()}</p>
+                      <p className="text-green-100 text-xs sm:text-sm">Total Value</p>
+                      <p className="text-xl sm:text-2xl font-bold">UGX {portfolioValue.toLocaleString()}</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-green-100 text-sm">Returns</p>
-                      <p className="text-xl font-bold flex items-center">
-                        <ArrowUp className="w-4 h-4 mr-1" />
+                      <p className="text-green-100 text-xs sm:text-sm">Returns</p>
+                      <p className="text-lg sm:text-xl font-bold flex items-center">
+                        <ArrowUp className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
                         {returns.toFixed(1)}%
                       </p>
                     </div>
@@ -113,17 +112,17 @@ const Investments = () => {
                 </div>
 
                 {/* Animated Chart */}
-                <div className="bg-gray-50 rounded-2xl p-4 mb-6">
-                  <div className="flex justify-between items-center mb-4">
-                    <h4 className="text-lg font-semibold text-gray-900">Growth Chart</h4>
+                <div className="bg-gray-50 rounded-2xl p-3 sm:p-4 mb-4 sm:mb-6">
+                  <div className="flex justify-between items-center mb-3 sm:mb-4">
+                    <h4 className="text-base sm:text-lg font-semibold text-gray-900">Growth Chart</h4>
                     <div className="flex items-center text-green-600">
-                      <TrendingUp className="w-4 h-4 mr-1" />
-                      <span className="text-sm font-bold">+{returns.toFixed(1)}%</span>
+                      <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+                      <span className="text-xs sm:text-sm font-bold">+{returns.toFixed(1)}%</span>
                     </div>
                   </div>
                   
                   {/* Chart bars */}
-                  <div className="flex items-end justify-between space-x-1 h-32">
+                  <div className="flex items-end justify-between space-x-1 h-24 sm:h-32">
                     {chartData.map((value, index) => (
                       <div key={index} className="flex flex-col items-center flex-1">
                         <div 
@@ -134,7 +133,7 @@ const Investments = () => {
                           }`}
                           style={{ 
                             height: `${getChartHeight(value, index)}px`,
-                            minHeight: '20px'
+                            minHeight: '15px'
                           }}
                         ></div>
                         <span className="text-xs text-gray-500 mt-1">{index + 1}</span>
@@ -144,60 +143,60 @@ const Investments = () => {
                 </div>
 
                 {/* Investment Summary */}
-                <div className="grid grid-cols-3 gap-3">
-                  <div className="bg-blue-50 rounded-xl p-3 text-center">
-                    <Building className="w-5 h-5 mx-auto mb-1 text-blue-600" />
+                <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                  <div className="bg-blue-50 rounded-xl p-2 sm:p-3 text-center">
+                    <Building className="w-4 h-4 sm:w-5 sm:h-5 mx-auto mb-1 text-blue-600" />
                     <p className="text-xs font-semibold text-blue-600">Real Estate</p>
                     <p className="text-xs text-gray-600">40%</p>
                   </div>
-                  <div className="bg-purple-50 rounded-xl p-3 text-center">
-                    <Lightbulb className="w-5 h-5 mx-auto mb-1 text-purple-600" />
+                  <div className="bg-purple-50 rounded-xl p-2 sm:p-3 text-center">
+                    <Lightbulb className="w-4 h-4 sm:w-5 sm:h-5 mx-auto mb-1 text-purple-600" />
                     <p className="text-xs font-semibold text-purple-600">Startups</p>
                     <p className="text-xs text-gray-600">35%</p>
                   </div>
-                  <div className="bg-green-50 rounded-xl p-3 text-center">
-                    <TrendingUp className="w-5 h-5 mx-auto mb-1 text-green-600" />
+                  <div className="bg-green-50 rounded-xl p-2 sm:p-3 text-center">
+                    <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 mx-auto mb-1 text-green-600" />
                     <p className="text-xs font-semibold text-green-600">Agriculture</p>
                     <p className="text-xs text-gray-600">25%</p>
                   </div>
                 </div>
 
                 {/* Members indicator */}
-                <div className="mt-4 flex items-center justify-center space-x-2">
+                <div className="mt-3 sm:mt-4 flex items-center justify-center space-x-2">
                   <div className="flex -space-x-2">
                     {[1, 2, 3, 4].map((i) => (
-                      <div key={i} className="w-6 h-6 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full border-2 border-white flex items-center justify-center">
+                      <div key={i} className="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full border-2 border-white flex items-center justify-center">
                         <span className="text-white text-xs font-bold">{i}</span>
                       </div>
                     ))}
                   </div>
-                  <span className="text-gray-600 text-sm">+8 investors</span>
+                  <span className="text-gray-600 text-xs sm:text-sm">+8 investors</span>
                 </div>
               </div>
 
-              {/* Floating elements */}
-              <div className="absolute -top-6 -left-6 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold animate-bounce">
+              {/* Floating elements - hidden on small screens */}
+              <div className="hidden sm:block absolute -top-6 -left-6 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold animate-bounce">
                 <TrendingUp className="w-6 h-6" />
               </div>
-              <div className="absolute -bottom-6 -right-6 w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center text-white animate-pulse">
+              <div className="hidden sm:block absolute -bottom-6 -right-6 w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center text-white animate-pulse">
                 <Target className="w-8 h-8" />
               </div>
-              <div className="absolute top-1/2 -left-4 w-8 h-8 bg-blue-500 rounded-full animate-ping"></div>
-              <div className="absolute top-1/4 -right-4 w-6 h-6 bg-yellow-500 rounded-full animate-bounce" style={{ animationDelay: '0.5s' }}></div>
+              <div className="hidden lg:block absolute top-1/2 -left-4 w-8 h-8 bg-blue-500 rounded-full animate-ping"></div>
+              <div className="hidden lg:block absolute top-1/4 -right-4 w-6 h-6 bg-yellow-500 rounded-full animate-bounce" style={{ animationDelay: '0.5s' }}></div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Investment Opportunities */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Investment Opportunities</h2>
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Investment Opportunities</h2>
             <p className="text-gray-600">Diversify your portfolio with our curated investment options.</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <Card className="hover:shadow-xl transition-all duration-500 hover:scale-105 animate-fade-in">
               <CardHeader>
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center mb-4">
@@ -244,14 +243,14 @@ const Investments = () => {
       </section>
 
       {/* How Joint Investment Works */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-purple-50">
+      <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-purple-50">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">How Joint Investment Works</h2>
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">How Joint Investment Works</h2>
             <p className="text-gray-600">We grow together through collaborative investing</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="text-center animate-fade-in">
               <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Users className="w-8 h-8 text-white" />
@@ -288,13 +287,13 @@ const Investments = () => {
       </section>
 
       {/* Benefits */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Invest Together?</h2>
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Why Invest Together?</h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
             <Card className="hover:shadow-lg transition-all duration-300">
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold mb-3">Lower Risk, Higher Potential</h3>
@@ -327,10 +326,10 @@ const Investments = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+      <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Start Investing Together</h2>
-          <p className="text-xl mb-8 opacity-90">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Start Investing Together</h2>
+          <p className="text-lg sm:text-xl mb-6 sm:mb-8 opacity-90">
             Join investment circles and grow your wealth with fellow members
           </p>
           <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 hover:scale-105 transition-all duration-300">
@@ -340,9 +339,9 @@ const Investments = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-4 sm:px-6 lg:px-8 bg-gray-900 text-white">
+      <footer className="py-6 sm:py-8 px-4 sm:px-6 lg:px-8 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto text-center">
-          <p>&copy; 2024 Zillion Capital. All rights reserved. Finance Made Local • A future worth a zillion</p>
+          <p className="text-sm sm:text-base">&copy; 2024 Zillion Capital. All rights reserved. Finance Made Local • A future worth a zillion</p>
         </div>
       </footer>
     </div>
