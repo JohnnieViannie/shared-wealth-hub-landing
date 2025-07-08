@@ -1,13 +1,15 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { TrendingUp, Users, Building, Lightbulb, Shield, Target, ArrowUp, PieChart } from "lucide-react";
+import { TrendingUp, Users, Building, Lightbulb, Shield, Target, ArrowUp, PieChart, DollarSign } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
 const Investments = () => {
   const [portfolioValue, setPortfolioValue] = useState(0);
   const [returns, setReturns] = useState(0);
-  const [activeInvestment, setActiveInvestment] = useState(0);
+  const [chartData, setChartData] = useState([50, 48, 52, 58, 65, 70, 75, 80, 85, 92]);
+  const [animationIndex, setAnimationIndex] = useState(0);
 
   const investments = [
     { name: "Tech Startup", amount: 250000, growth: 15, icon: Lightbulb, color: "from-blue-500 to-purple-500" },
@@ -22,16 +24,31 @@ const Investments = () => {
       setReturns(prev => Math.min(prev + 0.2, 11.8));
     }, 100);
 
-    // Cycle through investments
-    const investmentInterval = setInterval(() => {
-      setActiveInvestment(prev => (prev + 1) % investments.length);
-    }, 3000);
+    // Animate chart growth
+    const chartInterval = setInterval(() => {
+      setAnimationIndex(prev => {
+        const next = (prev + 1) % 15;
+        if (next < 10) {
+          return next;
+        }
+        // Reset and add slight growth
+        setChartData(prevData => prevData.map(val => val + Math.random() * 2));
+        return 0;
+      });
+    }, 300);
 
     return () => {
       clearInterval(interval);
-      clearInterval(investmentInterval);
+      clearInterval(chartInterval);
     };
   }, []);
+
+  const getChartHeight = (value, index) => {
+    if (index <= animationIndex) {
+      return Math.max(20, value * 2);
+    }
+    return 20;
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
@@ -68,103 +85,93 @@ const Investments = () => {
               <p className="text-sm text-gray-500">Diversified portfolio • Professional management • Shared success</p>
             </div>
 
-            {/* Right side - Investment Animation */}
+            {/* Right side - Investment Chart Animation */}
             <div className="relative animate-fade-in" style={{ animationDelay: '0.5s' }}>
               {/* Main investment dashboard */}
               <div className="relative mx-auto w-96 h-[500px] bg-white rounded-3xl shadow-2xl p-6 hover:scale-105 transition-transform duration-500">
                 {/* Header */}
                 <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Investment Circle</h3>
-                  <p className="text-gray-600">Growing together since 2024</p>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Portfolio Growth</h3>
+                  <p className="text-gray-600">Investment Performance</p>
                 </div>
 
                 {/* Portfolio Overview */}
-                <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl p-6 text-white mb-6">
-                  <div className="flex justify-between items-center mb-4">
+                <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl p-4 text-white mb-6">
+                  <div className="flex justify-between items-center mb-2">
                     <div>
-                      <p className="text-green-100 text-sm">Total Portfolio Value</p>
-                      <p className="text-3xl font-bold">UGX {portfolioValue.toLocaleString()}</p>
+                      <p className="text-green-100 text-sm">Total Value</p>
+                      <p className="text-2xl font-bold">UGX {portfolioValue.toLocaleString()}</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-green-100 text-sm">Annual Returns</p>
-                      <p className="text-2xl font-bold flex items-center">
-                        <ArrowUp className="w-5 h-5 mr-1" />
+                      <p className="text-green-100 text-sm">Returns</p>
+                      <p className="text-xl font-bold flex items-center">
+                        <ArrowUp className="w-4 h-4 mr-1" />
                         {returns.toFixed(1)}%
                       </p>
                     </div>
                   </div>
-                  <div className="flex space-x-2">
-                    <div className="flex -space-x-2">
-                      {[1, 2, 3, 4].map((i) => (
-                        <div key={i} className="w-8 h-8 bg-white rounded-full border-2 border-white flex items-center justify-center">
-                          <span className="text-blue-600 text-sm font-bold">{i}</span>
-                        </div>
-                      ))}
+                </div>
+
+                {/* Animated Chart */}
+                <div className="bg-gray-50 rounded-2xl p-4 mb-6">
+                  <div className="flex justify-between items-center mb-4">
+                    <h4 className="text-lg font-semibold text-gray-900">Growth Chart</h4>
+                    <div className="flex items-center text-green-600">
+                      <TrendingUp className="w-4 h-4 mr-1" />
+                      <span className="text-sm font-bold">+{returns.toFixed(1)}%</span>
                     </div>
-                    <span className="text-green-100 text-sm self-center">+8 other investors</span>
+                  </div>
+                  
+                  {/* Chart bars */}
+                  <div className="flex items-end justify-between space-x-1 h-32">
+                    {chartData.map((value, index) => (
+                      <div key={index} className="flex flex-col items-center flex-1">
+                        <div 
+                          className={`w-full rounded-t transition-all duration-500 ${
+                            index <= animationIndex 
+                              ? 'bg-gradient-to-t from-blue-500 to-green-400' 
+                              : 'bg-gray-200'
+                          }`}
+                          style={{ 
+                            height: `${getChartHeight(value, index)}px`,
+                            minHeight: '20px'
+                          }}
+                        ></div>
+                        <span className="text-xs text-gray-500 mt-1">{index + 1}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                {/* Investment Opportunities */}
-                <div className="space-y-3">
-                  {investments.map((investment, index) => {
-                    const IconComponent = investment.icon;
-                    const isActive = index === activeInvestment;
-                    
-                    return (
-                      <div 
-                        key={index}
-                        className={`p-4 rounded-xl transition-all duration-500 ${
-                          isActive ? 'bg-white shadow-lg scale-105 border-2 border-blue-200' : 'bg-gray-50'
-                        }`}
-                      >
-                        <div className="flex items-center space-x-3">
-                          <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 ${
-                            isActive ? `bg-gradient-to-r ${investment.color} text-white` : 'bg-gray-200 text-gray-600'
-                          }`}>
-                            <IconComponent className="w-6 h-6" />
-                          </div>
-                          <div className="flex-1">
-                            <div className="flex justify-between items-center">
-                              <h4 className={`font-semibold transition-colors ${
-                                isActive ? 'text-gray-900' : 'text-gray-600'
-                              }`}>
-                                {investment.name}
-                              </h4>
-                              <span className={`text-sm font-bold transition-colors ${
-                                isActive ? 'text-green-600' : 'text-gray-500'
-                              }`}>
-                                +{investment.growth}%
-                              </span>
-                            </div>
-                            <p className="text-gray-500 text-sm">UGX {investment.amount.toLocaleString()}</p>
-                            {isActive && (
-                              <div className="mt-2">
-                                <div className="w-full bg-gray-200 rounded-full h-2">
-                                  <div 
-                                    className="bg-gradient-to-r from-green-400 to-blue-500 h-2 rounded-full transition-all duration-1000"
-                                    style={{ width: `${(investment.growth / 20) * 100}%` }}
-                                  ></div>
-                                </div>
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {/* Investment Stats */}
-                <div className="mt-6 grid grid-cols-2 gap-4">
+                {/* Investment Summary */}
+                <div className="grid grid-cols-3 gap-3">
                   <div className="bg-blue-50 rounded-xl p-3 text-center">
-                    <PieChart className="w-6 h-6 mx-auto mb-1 text-blue-600" />
-                    <p className="text-sm font-semibold text-blue-600">Diversified</p>
+                    <Building className="w-5 h-5 mx-auto mb-1 text-blue-600" />
+                    <p className="text-xs font-semibold text-blue-600">Real Estate</p>
+                    <p className="text-xs text-gray-600">40%</p>
+                  </div>
+                  <div className="bg-purple-50 rounded-xl p-3 text-center">
+                    <Lightbulb className="w-5 h-5 mx-auto mb-1 text-purple-600" />
+                    <p className="text-xs font-semibold text-purple-600">Startups</p>
+                    <p className="text-xs text-gray-600">35%</p>
                   </div>
                   <div className="bg-green-50 rounded-xl p-3 text-center">
-                    <Users className="w-6 h-6 mx-auto mb-1 text-green-600" />
-                    <p className="text-sm font-semibold text-green-600">12 Members</p>
+                    <TrendingUp className="w-5 h-5 mx-auto mb-1 text-green-600" />
+                    <p className="text-xs font-semibold text-green-600">Agriculture</p>
+                    <p className="text-xs text-gray-600">25%</p>
                   </div>
+                </div>
+
+                {/* Members indicator */}
+                <div className="mt-4 flex items-center justify-center space-x-2">
+                  <div className="flex -space-x-2">
+                    {[1, 2, 3, 4].map((i) => (
+                      <div key={i} className="w-6 h-6 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full border-2 border-white flex items-center justify-center">
+                        <span className="text-white text-xs font-bold">{i}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <span className="text-gray-600 text-sm">+8 investors</span>
                 </div>
               </div>
 
