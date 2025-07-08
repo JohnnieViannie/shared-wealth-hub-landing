@@ -1,24 +1,162 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle, Clock, Shield, Smartphone, TrendingUp } from "lucide-react";
+import { CheckCircle, Clock, Shield, Smartphone, TrendingUp, DollarSign, CreditCard, ArrowRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
 const Loans = () => {
+  const [loanAmount, setLoanAmount] = useState(0);
+  const [creditScore, setCreditScore] = useState(0);
+  const [animationStep, setAnimationStep] = useState(0);
+
+  useEffect(() => {
+    // Animate loan amount and credit score
+    const interval = setInterval(() => {
+      setLoanAmount(prev => Math.min(prev + 50000, 2500000));
+      setCreditScore(prev => Math.min(prev + 5, 850));
+    }, 100);
+
+    // Animation steps for the loan process
+    const stepInterval = setInterval(() => {
+      setAnimationStep(prev => (prev + 1) % 4);
+    }, 2000);
+
+    return () => {
+      clearInterval(interval);
+      clearInterval(stepInterval);
+    };
+  }, []);
+
+  const loanSteps = [
+    { title: "Apply", icon: Smartphone, color: "from-blue-500 to-blue-600" },
+    { title: "Review", icon: CheckCircle, color: "from-green-500 to-green-600" },
+    { title: "Approve", icon: Shield, color: "from-purple-500 to-purple-600" },
+    { title: "Disburse", icon: CreditCard, color: "from-orange-500 to-orange-600" }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 animate-fade-in">
-            Instant <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Loans</span>
-          </h1>
-          <p className="text-xl text-gray-600 mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            Get instant loans based on your credit score. No collateral needed, just your trust and savings history.
-          </p>
+      <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left side - Content */}
+            <div className="text-center lg:text-left animate-fade-in">
+              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                Instant <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Loans</span>
+              </h1>
+              
+              <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-6">
+                No Collateral. Just Your Credit Score.
+              </h2>
+              
+              <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0">
+                Get instant loans based on your savings history and credit score. 
+                Borrow up to <span className="font-bold text-blue-600">3× your savings</span> with 
+                flexible terms and instant mobile money disbursement.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 mb-8">
+                <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 hover:scale-105 transition-all duration-300">
+                  Apply for Loan Now
+                </Button>
+                <Button variant="outline" size="lg" className="hover:scale-105 transition-all duration-300">
+                  Check Eligibility
+                </Button>
+              </div>
+              
+              <p className="text-sm text-gray-500">98% approval rate • Instant disbursement • No paperwork required</p>
+            </div>
+
+            {/* Right side - Loan Animation */}
+            <div className="relative animate-fade-in" style={{ animationDelay: '0.5s' }}>
+              {/* Main card showing loan process */}
+              <div className="relative mx-auto w-96 h-[500px] bg-white rounded-3xl shadow-2xl p-6 hover:scale-105 transition-transform duration-500">
+                {/* Header */}
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Loan Application</h3>
+                  <p className="text-gray-600">Real-time processing</p>
+                </div>
+
+                {/* Credit Score Display */}
+                <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 mb-6">
+                  <div className="flex justify-between items-center mb-4">
+                    <span className="text-gray-600">Credit Score</span>
+                    <span className="text-2xl font-bold text-green-600">{creditScore}</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-3">
+                    <div 
+                      className="bg-gradient-to-r from-green-400 to-green-600 h-3 rounded-full transition-all duration-300"
+                      style={{ width: `${(creditScore / 850) * 100}%` }}
+                    ></div>
+                  </div>
+                </div>
+
+                {/* Loan Amount Display */}
+                <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-6 text-white mb-6">
+                  <p className="text-blue-100 mb-2">Available Loan Amount</p>
+                  <p className="text-3xl font-bold">UGX {loanAmount.toLocaleString()}</p>
+                  <p className="text-blue-200 text-sm mt-2">Based on your savings & credit score</p>
+                </div>
+
+                {/* Process Steps */}
+                <div className="space-y-3">
+                  {loanSteps.map((step, index) => {
+                    const IconComponent = step.icon;
+                    const isActive = index === animationStep;
+                    const isCompleted = index < animationStep;
+                    
+                    return (
+                      <div 
+                        key={index}
+                        className={`flex items-center space-x-3 p-3 rounded-xl transition-all duration-500 ${
+                          isActive ? 'bg-white shadow-lg scale-105' : 
+                          isCompleted ? 'bg-green-50' : 'bg-gray-50'
+                        }`}
+                      >
+                        <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500 ${
+                          isActive ? `bg-gradient-to-r ${step.color} text-white` :
+                          isCompleted ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-600'
+                        }`}>
+                          <IconComponent className="w-5 h-5" />
+                        </div>
+                        <div className="flex-1">
+                          <p className={`font-semibold transition-colors ${
+                            isActive ? 'text-gray-900' : 
+                            isCompleted ? 'text-green-700' : 'text-gray-600'
+                          }`}>
+                            {step.title}
+                          </p>
+                        </div>
+                        {isActive && (
+                          <div className="flex space-x-1">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                          </div>
+                        )}
+                        {isCompleted && (
+                          <CheckCircle className="w-5 h-5 text-green-500" />
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Floating elements */}
+              <div className="absolute -top-6 -left-6 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold animate-bounce">
+                <DollarSign className="w-6 h-6" />
+              </div>
+              <div className="absolute -bottom-6 -right-6 w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-white animate-pulse">
+                <CreditCard className="w-8 h-8" />
+              </div>
+              <div className="absolute top-1/2 -left-4 w-8 h-8 bg-purple-500 rounded-full animate-ping"></div>
+              <div className="absolute top-1/4 -right-4 w-6 h-6 bg-orange-500 rounded-full animate-bounce" style={{ animationDelay: '0.5s' }}></div>
+            </div>
+          </div>
         </div>
       </section>
 
