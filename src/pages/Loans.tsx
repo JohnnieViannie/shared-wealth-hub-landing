@@ -42,8 +42,8 @@ const Loans = () => {
       <section className="pt-20 pb-8 sm:pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Left side - Content */}
-            <div className="text-center lg:text-left animate-fade-in order-2 lg:order-1">
+            {/* Left side - Content - appears first on mobile, left on desktop */}
+            <div className="text-center lg:text-left animate-fade-in">
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
                 Instant <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Loans</span>
               </h1>
@@ -70,8 +70,8 @@ const Loans = () => {
               <p className="text-sm text-gray-500">98% approval rate • Instant disbursement • No paperwork required</p>
             </div>
 
-            {/* Right side - Loan Animation */}
-            <div className="relative animate-fade-in order-1 lg:order-2" style={{ animationDelay: '0.5s' }}>
+            {/* Right side - Loan Animation - appears second on mobile, right on desktop */}
+            <div className="relative animate-fade-in" style={{ animationDelay: '0.5s' }}>
               {/* Main card showing loan process */}
               <div className="relative mx-auto w-full max-w-sm lg:max-w-md xl:max-w-lg bg-white rounded-3xl shadow-2xl p-4 sm:p-6 hover:scale-105 transition-transform duration-500">
                 {/* Header */}

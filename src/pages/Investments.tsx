@@ -1,20 +1,13 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { TrendingUp, Users, Building, Lightbulb, Shield, Target, ArrowUp, PieChart, DollarSign } from "lucide-react";
+import { TrendingUp, Users, Building, Lightbulb, Shield, Target, ArrowUp } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
 const Investments = () => {
+  const [chartPoints, setChartPoints] = useState([]);
   const [portfolioValue, setPortfolioValue] = useState(0);
   const [returns, setReturns] = useState(0);
-  const [chartData, setChartData] = useState([50, 48, 52, 58, 65, 70, 75, 80, 85, 92]);
-  const [animationIndex, setAnimationIndex] = useState(0);
-
-  const investments = [
-    { name: "Tech Startup", amount: 250000, growth: 15, icon: Lightbulb, color: "from-blue-500 to-purple-500" },
-    { name: "Real Estate", amount: 500000, growth: 8, icon: Building, color: "from-green-500 to-blue-500" },
-    { name: "Agriculture", amount: 180000, growth: 12, icon: TrendingUp, color: "from-yellow-500 to-orange-500" }
-  ];
 
   useEffect(() => {
     // Animate portfolio values
@@ -23,18 +16,44 @@ const Investments = () => {
       setReturns(prev => Math.min(prev + 0.2, 11.8));
     }, 100);
 
-    // Animate chart growth
+    // Generate animated stock market line
+    const generateChartPoints = () => {
+      const points = [];
+      let currentValue = 50;
+      
+      for (let i = 0; i <= 20; i++) {
+        const x = (i / 20) * 300; // 300px width
+        const volatility = (Math.random() - 0.5) * 8; // Random volatility
+        const trend = i * 2; // Upward trend
+        currentValue = Math.max(20, Math.min(100, currentValue + volatility + trend * 0.3));
+        const y = 120 - currentValue; // Invert Y axis (120px height)
+        points.push({ x, y, value: currentValue });
+      }
+      return points;
+    };
+
+    // Animate the chart line drawing
+    let pointIndex = 0;
     const chartInterval = setInterval(() => {
-      setAnimationIndex(prev => {
-        const next = (prev + 1) % 15;
-        if (next < 10) {
-          return next;
-        }
-        // Reset and add slight growth
-        setChartData(prevData => prevData.map(val => val + Math.random() * 2));
-        return 0;
-      });
-    }, 300);
+      if (pointIndex === 0) {
+        const newPoints = generateChartPoints();
+        setChartPoints([newPoints[0]]);
+        pointIndex = 1;
+      } else {
+        setChartPoints(prev => {
+          const allPoints = generateChartPoints();
+          if (pointIndex < allPoints.length) {
+            const newPoints = allPoints.slice(0, pointIndex + 1);
+            pointIndex++;
+            return newPoints;
+          } else {
+            // Reset animation
+            pointIndex = 0;
+            return [];
+          }
+        });
+      }
+    }, 150);
 
     return () => {
       clearInterval(interval);
@@ -42,11 +61,15 @@ const Investments = () => {
     };
   }, []);
 
-  const getChartHeight = (value, index) => {
-    if (index <= animationIndex) {
-      return Math.max(20, value * 2);
+  // Create SVG path from points
+  const createPath = (points) => {
+    if (points.length < 2) return '';
+    
+    let path = `M ${points[0].x} ${points[0].y}`;
+    for (let i = 1; i < points.length; i++) {
+      path += ` L ${points[i].x} ${points[i].y}`;
     }
-    return 20;
+    return path;
   };
 
   return (
@@ -57,8 +80,8 @@ const Investments = () => {
       <section className="pt-20 pb-8 sm:pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Left side - Content */}
-            <div className="text-center lg:text-left animate-fade-in order-2 lg:order-1">
+            {/* Left side - Content - appears first on mobile, left on desktop */}
+            <div className="text-center lg:text-left animate-fade-in">
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
                 Joint <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Investments</span>
               </h1>
@@ -84,66 +107,111 @@ const Investments = () => {
               <p className="text-sm text-gray-500">Diversified portfolio • Professional management • Shared success</p>
             </div>
 
-            {/* Right side - Investment Chart Animation */}
-            <div className="relative animate-fade-in order-1 lg:order-2" style={{ animationDelay: '0.5s' }}>
-              {/* Main investment dashboard */}
-              <div className="relative mx-auto w-full max-w-sm lg:max-w-md xl:max-w-lg bg-white rounded-3xl shadow-2xl p-4 sm:p-6 hover:scale-105 transition-transform duration-500">
+            {/* Right side - Stock Market Graph - appears second on mobile, right on desktop */}
+            <div className="relative animate-fade-in" style={{ animationDelay: '0.5s' }}>
+              {/* Main investment dashboard with animated stock graph */}
+              <div className="relative mx-auto w-full max-w-sm sm:max-w-md lg:max-w-lg bg-white rounded-3xl shadow-2xl p-4 sm:p-6 hover:scale-105 transition-transform duration-500">
                 {/* Header */}
                 <div className="text-center mb-4 sm:mb-6">
                   <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Portfolio Growth</h3>
-                  <p className="text-gray-600 text-sm sm:text-base">Investment Performance</p>
+                  <p className="text-gray-600 text-sm sm:text-base">Live Market Performance</p>
                 </div>
 
-                {/* Portfolio Overview */}
-                <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl p-3 sm:p-4 text-white mb-4 sm:mb-6">
-                  <div className="flex justify-between items-center mb-2">
-                    <div>
-                      <p className="text-green-100 text-xs sm:text-sm">Total Value</p>
-                      <p className="text-xl sm:text-2xl font-bold">UGX {portfolioValue.toLocaleString()}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-green-100 text-xs sm:text-sm">Returns</p>
-                      <p className="text-lg sm:text-xl font-bold flex items-center">
-                        <ArrowUp className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-                        {returns.toFixed(1)}%
-                      </p>
-                    </div>
+                {/* Portfolio Stats */}
+                <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
+                  <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-xl p-3 sm:p-4 text-white">
+                    <p className="text-green-100 text-xs sm:text-sm">Portfolio Value</p>
+                    <p className="text-lg sm:text-xl font-bold">UGX {portfolioValue.toLocaleString()}</p>
+                  </div>
+                  <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-3 sm:p-4 text-white">
+                    <p className="text-blue-100 text-xs sm:text-sm">Returns</p>
+                    <p className="text-lg sm:text-xl font-bold flex items-center">
+                      <ArrowUp className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+                      {returns.toFixed(1)}%
+                    </p>
                   </div>
                 </div>
 
-                {/* Animated Chart */}
+                {/* Animated Stock Market Graph */}
                 <div className="bg-gray-50 rounded-2xl p-3 sm:p-4 mb-4 sm:mb-6">
                   <div className="flex justify-between items-center mb-3 sm:mb-4">
-                    <h4 className="text-base sm:text-lg font-semibold text-gray-900">Growth Chart</h4>
+                    <h4 className="text-base sm:text-lg font-semibold text-gray-900">Market Performance</h4>
                     <div className="flex items-center text-green-600">
                       <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
                       <span className="text-xs sm:text-sm font-bold">+{returns.toFixed(1)}%</span>
                     </div>
                   </div>
                   
-                  {/* Chart bars */}
-                  <div className="flex items-end justify-between space-x-1 h-24 sm:h-32">
-                    {chartData.map((value, index) => (
-                      <div key={index} className="flex flex-col items-center flex-1">
-                        <div 
-                          className={`w-full rounded-t transition-all duration-500 ${
-                            index <= animationIndex 
-                              ? 'bg-gradient-to-t from-blue-500 to-green-400' 
-                              : 'bg-gray-200'
-                          }`}
-                          style={{ 
-                            height: `${getChartHeight(value, index)}px`,
-                            minHeight: '15px'
-                          }}
-                        ></div>
-                        <span className="text-xs text-gray-500 mt-1">{index + 1}</span>
-                      </div>
-                    ))}
+                  {/* SVG Line Chart */}
+                  <div className="relative w-full h-24 sm:h-32 bg-white rounded-lg overflow-hidden">
+                    <svg 
+                      width="100%" 
+                      height="100%" 
+                      viewBox="0 0 300 120" 
+                      className="absolute inset-0"
+                      preserveAspectRatio="none"
+                    >
+                      {/* Grid lines */}
+                      <defs>
+                        <pattern id="grid" width="30" height="24" patternUnits="userSpaceOnUse">
+                          <path d="M 30 0 L 0 0 0 24" fill="none" stroke="#f3f4f6" strokeWidth="1"/>
+                        </pattern>
+                      </defs>
+                      <rect width="100%" height="100%" fill="url(#grid)" />
+                      
+                      {/* Animated line */}
+                      {chartPoints.length > 1 && (
+                        <>
+                          {/* Area under the curve */}
+                          <path
+                            d={`${createPath(chartPoints)} L ${chartPoints[chartPoints.length - 1].x} 120 L ${chartPoints[0].x} 120 Z`}
+                            fill="url(#gradient)"
+                            opacity="0.2"
+                          />
+                          {/* Main line */}
+                          <path
+                            d={createPath(chartPoints)}
+                            fill="none"
+                            stroke="url(#lineGradient)"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          {/* Animated dot at the end */}
+                          <circle
+                            cx={chartPoints[chartPoints.length - 1]?.x}
+                            cy={chartPoints[chartPoints.length - 1]?.y}
+                            r="4"
+                            fill="#10b981"
+                            className="animate-pulse"
+                          />
+                        </>
+                      )}
+                      
+                      {/* Gradients */}
+                      <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                          <stop offset="0%" style={{ stopColor: '#10b981', stopOpacity: 0.3 }} />
+                          <stop offset="100%" style={{ stopColor: '#10b981', stopOpacity: 0 }} />
+                        </linearGradient>
+                        <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" style={{ stopColor: '#3b82f6' }} />
+                          <stop offset="50%" style={{ stopColor: '#10b981' }} />
+                          <stop offset="100%" style={{ stopColor: '#8b5cf6' }} />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    
+                    {/* Live indicator */}
+                    <div className="absolute top-2 right-2 flex items-center space-x-1">
+                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                      <span className="text-xs text-gray-600">LIVE</span>
+                    </div>
                   </div>
                 </div>
 
-                {/* Investment Summary */}
-                <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                {/* Investment Distribution */}
+                <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-4 sm:mb-6">
                   <div className="bg-blue-50 rounded-xl p-2 sm:p-3 text-center">
                     <Building className="w-4 h-4 sm:w-5 sm:h-5 mx-auto mb-1 text-blue-600" />
                     <p className="text-xs font-semibold text-blue-600">Real Estate</p>
@@ -162,7 +230,7 @@ const Investments = () => {
                 </div>
 
                 {/* Members indicator */}
-                <div className="mt-3 sm:mt-4 flex items-center justify-center space-x-2">
+                <div className="flex items-center justify-center space-x-2">
                   <div className="flex -space-x-2">
                     {[1, 2, 3, 4].map((i) => (
                       <div key={i} className="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full border-2 border-white flex items-center justify-center">
