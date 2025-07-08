@@ -1,10 +1,10 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { ArrowDown, ArrowUp, CircleArrowDown, CircleArrowRight, Users, DollarSign, TrendingUp, Shield, Smartphone, Clock, Banknote, CreditCard, Phone } from "lucide-react";
+import Navbar from "@/components/Navbar";
 
 const Index = () => {
   const [email, setEmail] = useState("");
@@ -66,60 +66,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 overflow-x-hidden">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-gray-200 z-50 animate-fade-in">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <img 
-                src="/lovable-uploads/e971dbb6-833d-49f1-abcc-b0fccec5f0d6.png" 
-                alt="Zillion Capital Logo" 
-                className="h-8 w-auto hover:scale-105 transition-transform cursor-pointer"
-              />
-            </div>
-            
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#how-it-works" className="text-gray-600 hover:text-blue-600 transition-all duration-300 hover:scale-105 relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-blue-600 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">How it Works</a>
-              <a href="#features" className="text-gray-600 hover:text-blue-600 transition-all duration-300 hover:scale-105 relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-blue-600 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Why Choose Us</a>
-              <a href="#security" className="text-gray-600 hover:text-blue-600 transition-all duration-300 hover:scale-105 relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-blue-600 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Who Can Join</a>
-              <Link to="/about" className="text-gray-600 hover:text-blue-600 transition-all duration-300 hover:scale-105 relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-blue-600 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">About</Link>
-              <Link to="/contact" className="text-gray-600 hover:text-blue-600 transition-all duration-300 hover:scale-105 relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-blue-600 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Contact</Link>
-              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-                Get Started
-              </Button>
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="md:hidden">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-gray-600 hover:text-blue-600 transition-colors"
-              >
-                <div className="w-6 h-6 flex flex-col justify-center items-center">
-                  <span className={`bg-current h-0.5 w-6 rounded-sm transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-1' : ''}`} />
-                  <span className={`bg-current h-0.5 w-6 rounded-sm transition-all duration-300 mt-1 ${isMenuOpen ? 'opacity-0' : ''}`} />
-                  <span className={`bg-current h-0.5 w-6 rounded-sm transition-all duration-300 mt-1 ${isMenuOpen ? '-rotate-45 -translate-y-1' : ''}`} />
-                </div>
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Navigation */}
-          {isMenuOpen && (
-            <div className="md:hidden animate-slide-in-right">
-              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/95 backdrop-blur-md rounded-lg mt-2 shadow-xl">
-                <a href="#how-it-works" className="block px-3 py-2 text-gray-600 hover:text-blue-600 transition-colors hover:bg-blue-50 rounded">How it Works</a>
-                <a href="#features" className="block px-3 py-2 text-gray-600 hover:text-blue-600 transition-colors hover:bg-blue-50 rounded">Why Choose Us</a>
-                <a href="#security" className="block px-3 py-2 text-gray-600 hover:text-blue-600 transition-colors hover:bg-blue-50 rounded">Who Can Join</a>
-                <Link to="/about" className="block px-3 py-2 text-gray-600 hover:text-blue-600 transition-colors hover:bg-blue-50 rounded">About</Link>
-                <Link to="/contact" className="block px-3 py-2 text-gray-600 hover:text-blue-600 transition-colors hover:bg-blue-50 rounded">Contact</Link>
-                <Button className="w-full mt-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:scale-[1.02] transition-transform">Get Started</Button>
-              </div>
-            </div>
-          )}
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Hero Section */}
       <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">

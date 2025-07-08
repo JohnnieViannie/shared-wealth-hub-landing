@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -121,7 +122,7 @@ const Contact = () => {
             </CardHeader>
             <CardContent>
               <CardDescription>
-                <a href="tel:+256777777777">+256 777 777777</a>
+                <a href="tel:+256777777777" className="hover:text-blue-600 transition-colors">+256 777 777777</a>
               </CardDescription>
             </CardContent>
           </Card>
@@ -130,12 +131,23 @@ const Contact = () => {
             <CardHeader>
               <CardTitle className="text-xl font-semibold flex items-center space-x-2">
                 <Mail className="w-5 h-5 text-gray-500" />
-                <span>Email</span>
+                <span>Email Addresses</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <CardDescription>
-                <a href="mailto:info@zillioncapital.com">info@zillioncapital.com</a>
+              <CardDescription className="space-y-2">
+                <div>
+                  <strong>General Inquiries:</strong><br />
+                  <a href="mailto:info@zillioncapital.com" className="hover:text-blue-600 transition-colors">info@zillioncapital.com</a>
+                </div>
+                <div>
+                  <strong>Support:</strong><br />
+                  <a href="mailto:support@zillioncapital.com" className="hover:text-blue-600 transition-colors">support@zillioncapital.com</a>
+                </div>
+                <div>
+                  <strong>Loans & Investments:</strong><br />
+                  <a href="mailto:loans@zillioncapital.com" className="hover:text-blue-600 transition-colors">loans@zillioncapital.com</a>
+                </div>
               </CardDescription>
             </CardContent>
           </Card>
