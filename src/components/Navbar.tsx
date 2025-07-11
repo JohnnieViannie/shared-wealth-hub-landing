@@ -30,6 +30,7 @@ const Navbar = () => {
             <Link to="/" className="text-gray-600 hover:text-blue-600 transition-colors">Home</Link>
             <Link to="/loans" className="text-gray-600 hover:text-blue-600 transition-colors">Loans</Link>
             <Link to="/investments" className="text-gray-600 hover:text-blue-600 transition-colors">Investments</Link>
+            <Link to="/group-savings" className="text-gray-600 hover:text-blue-600 transition-colors">Group Savings</Link>
             <Link to="/contact" className="text-gray-600 hover:text-blue-600 transition-colors">Contact</Link>
             <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
               Get Started
@@ -71,6 +72,13 @@ const Navbar = () => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Investments
+              </Link>
+              <Link 
+                to="/group-savings" 
+                className="block px-3 py-2 text-gray-600 hover:text-blue-600 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Group Savings
               </Link>
               <Link 
                 to="/contact" 
